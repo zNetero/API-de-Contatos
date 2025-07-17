@@ -3,7 +3,7 @@ const User = require('./User');
 
 async function syncDatabase() {
   try {
-    await sequelize.sync({ force: true });
+    await sequelize.sync();
     console.log('Database successfully synchronized!');
   } catch (error) {
     console.error('Error synchronizing the database:', error);

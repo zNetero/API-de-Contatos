@@ -9,7 +9,7 @@ const app = express()
 
 app.use(express.json())
 
-app.post('/Create', async (request, response) => {
+app.post('/users', async (request, response) => {
     createUser(
         request.body.name, 
         request.body.email, 
@@ -26,7 +26,7 @@ app.post('/Create', async (request, response) => {
         })
 })
 
-app.get('/List', async (request,response)=>{
+app.get('/users', async (request,response)=>{
     try{
         const users = await listUsers()
         response.status(200).json(users);
