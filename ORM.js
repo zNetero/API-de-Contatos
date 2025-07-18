@@ -1,7 +1,7 @@
 
 const { syncDatabase } = require('./sync');
 const express = require('express')
-
+const {updateUser} = require('./update');
 const { createUser } = require('./create');
 const { listUsers } = require('./read');
 
@@ -25,6 +25,22 @@ app.post('/users', async (request, response) => {
             })
         })
 })
+
+
+app.patch('/update/:id', async(request,response)=>{
+    const id = request.params.id;
+    const updatedData = request.body
+    
+    try{
+        const result = await updateUser(id,updatedData);
+        response.status(200).json(result)
+    }
+    catch(error){
+        response.status(500).json({error:error.message})
+    }
+})
+
+
 
 app.get('/users', async (request,response)=>{
     try{
