@@ -1,9 +1,12 @@
 const User = require('./User');
 
-async function updateUser(name,email,phone){
+async function updateUser(id, updatedData){
     try{
-        await User.update();
-        return newUser
+        const [updatedRowsCount] = User.update(updatedData,{where:{id}})
+        if(updatedRowsCount === 0){
+            throw new Error('User not found or no changes made');
+        }
+        return { message: 'User updated successfully.' }
     }
     catch(error){
         throw error;
