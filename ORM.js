@@ -4,12 +4,13 @@ const express = require('express')
 const {updateUser} = require('./update');
 const { createUser } = require('./create');
 const { listUsers } = require('./read');
+const {deleteUser} = require('./delete');
 
 const app = express()
 
 app.use(express.json())
 
-app.post('/users', async (request, response) => {
+app.post('/user', async (request, response) => {
     createUser(
         request.body.name, 
         request.body.email, 
@@ -41,8 +42,21 @@ app.patch('/update/:id', async(request,response)=>{
 })
 
 
+app.delete('/delete/:id',async(request,response)=>{
+    const id = request.params.id;
+    try{
+        const result = await deleteUser(id)
+        response.status(200).json(result)
+    }
+    catch(error){
+        response.status(500).json({
+            error: error.message
+        })
+    }
+})
 
-app.get('/users', async (request,response)=>{
+
+app.get('/user', async (request,response)=>{
     try{
         const users = await listUsers()
         response.status(200).json(users);
