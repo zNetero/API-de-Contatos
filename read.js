@@ -7,7 +7,7 @@ async function listUsers(){
         return read;
     }
     catch(error){
-        console.error(error)
+        throw error;
     }
 }
 
