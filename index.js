@@ -1,11 +1,11 @@
 
 const { syncDatabase } = require('./sync');
 const express = require('express')
-const { updateUser } = require('./update');
-const { createUser } = require('./create');
-const { listUsers } = require('./read');
-const { deleteUser } = require('./delete');
-const { getUserById } = require('./getUserById');
+const { updateUser } = require('./controllers/update');
+const { createUser } = require('./controllers/create');
+const { listUsers } = require('./controllers/read');
+const { deleteUser } = require('./controllers/delete');
+const { getUserById } = require('./controllers/getUserById');
 
 const app = express()
 
